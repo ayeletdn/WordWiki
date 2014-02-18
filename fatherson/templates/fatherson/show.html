@@ -5,7 +5,10 @@
 </head>
 <body>
     <h1>Please fill the details in the following form:</h1>
-    <form method="POST" action="calc/">
+    {% if error %}
+    <h2>Please correct your errors </h2>
+    {% endif %}
+    <form method="POST">
         Father's name: <input type="text" name="father_name"/><br/>
         Father's birth year: <input type="number" name="father_year"/><br/>
         Son's name: <input type="text" name="son_name"/><br/>

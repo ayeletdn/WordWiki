@@ -5,21 +5,27 @@ import math
 
 @csrf_exempt
 def show(request):
-    return render(request, 'fatherson/show.html')
-#
-#
-@csrf_exempt
-def calc(request):
-    father_name = request.POST['father_name']
-    father_year = int(request.POST['father_year'])
+    error = False
+    if request.method == "POST":
 
-    son_name = request.POST['son_name']
-    son_year = int(request.POST['son_year'])
+        father_name = request.POST['father_name']
+        father_year = int(request.POST['father_year'])
 
-    delta = int(math.fabs(father_year - son_year))
-    return render(request, 'fatherson/calc.html', {
-        'father_name': father_name,
-        'son_name': son_name,
-        'father_age': delta*2,
-        'son_age': delta
+        son_name = request.POST['son_name']
+        son_year = int(request.POST['son_year'])
+
+        if father_name and father_year and son_name and son_year:
+
+            delta = int(math.fabs(father_year - son_year))
+            return render(request, 'fatherson/calc.html', {
+                'father_name': father_name,
+                'son_name': son_name,
+                'father_age': delta*2,
+                'son_age': delta
+            })
+
+        error = True
+
+    return render(request, 'fatherson/show.html', {
+        'error': error,
     })
