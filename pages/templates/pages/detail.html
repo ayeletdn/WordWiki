@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <title>{{ page.display_name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}">
+</head>
+<body>
+    Back to <a href="{% url 'pages:index' %}">word list</a><br/>
+    <h1>{{ page.display_name }}</h1>
+    <p class="definition">{{ page.definition|linebreaksbr }}</p>
+    <p>
+        Back to <a href="{% url 'pages:index' %}">word list</a>
+    </p>
+    <p>
+        <h1>Comments</h1>
+        {% for cmnt in page.comments.all %}
+            <p class="comment">
+                {{ cmnt.comment|linebreaksbr }}
+            </p>
+        {% endfor %}
+    </p>
+</body>
+</html>

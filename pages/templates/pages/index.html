@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <title>Word list</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}">
+</head>
+<body>
+{% if word_list %}
+    <ol>
+        {% for word in word_list %}
+            <li><a href="{% url 'pages:detail' word.word %}">{{ word.display_name }}</a> - {{ word.short_definition }}</li>
+        {% endfor %}
+    </ol>
+{% else %}
+    <p>No words</p>
+{% endif %}
+</body>
+</html>

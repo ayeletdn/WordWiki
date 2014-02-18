@@ -1,0 +1,23 @@
+li {
+    font-family: 'Tahoma';
+    font-size: 12px;
+}
+li:nth-child(2n) {
+    list-style: circle;
+    color: #bb3390;
+}
+li:nth-child(2n+1) {
+    color: #bb33a0;
+}
+
+.definition {
+    font-family: 'Tahoma';
+    font-size: 12px;
+    color: #555;
+    margin: 10px;
+}
+
+.comment {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
