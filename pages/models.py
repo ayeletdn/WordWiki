@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Page(models.Model):
-    word = models.CharField(max_length=200, unique=True, editable=False)
+    word = models.CharField(max_length=200, unique=True)
     display_name = models.CharField(max_length=200)
     definition = models.TextField(null=True)
 

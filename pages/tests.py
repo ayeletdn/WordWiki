@@ -1,4 +1,5 @@
-from django.test import TestCase
+from django.core.urlresolvers import reverse
+from django.test import TestCase, Client
 from django.db import IntegrityError
 from pages.models import Page, Comment
 
@@ -57,4 +58,16 @@ class PageTest(TestCase):
         page = create_page('word', 'Word', 'A definition of a word')
         for i in xrange(5):
             create_comment(page, 'This is a terrbile page', 1)
-        self.assertEqual(5, page.comment_set.count())
+        self.assertEqual(5, page.comments.count())
+
+    def test_successful_new_view(self):
+        c = Client()
+        d = dict(
+            word='word',
+            display_name='Word',
+            definition='A definition of a word'
+        )
+        response = c.post(reverse('pages:new'), d)
+        self.assertEqual(200, response.status_code)
+        ctx = response.context
+        print response.content
