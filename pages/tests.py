@@ -63,11 +63,10 @@ class PageTest(TestCase):
     def test_successful_new_view(self):
         c = Client()
         d = dict(
-            word='word',
-            display_name='Word',
-            definition='A definition of a word'
+            word='kwargs',
+            display_name='KU-Args',
+            definition='Keyword arguments'
         )
         response = c.post(reverse('pages:new'), d)
-        self.assertEqual(200, response.status_code)
-        ctx = response.context
-        print response.content
+        self.assertEqual(302, response.status_code)
+        self.assertRegexpMatches(response['Location'], (d['word']))
